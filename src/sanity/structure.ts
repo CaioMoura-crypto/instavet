@@ -1,15 +1,10 @@
 import type {StructureResolver} from 'sanity/structure'
 
-// https://www.sanity.io/docs/structure-builder-cheat-sheet
+// Estrutura simplificada - pronta para novos schemas quando necessário
 export const structure: StructureResolver = (S) =>
   S.list()
-    .title('Blog')
+    .title('Conteúdo')
     .items([
-      S.documentTypeListItem('post').title('Posts'),
-      S.documentTypeListItem('category').title('Categories'),
-      S.documentTypeListItem('author').title('Authors'),
-      S.divider(),
-      ...S.documentTypeListItems().filter(
-        (item) => item.getId() && !['post', 'category', 'author'].includes(item.getId()!),
-      ),
+      // Lista vazia - adicione novos documentos aqui quando criar schemas
+      ...S.documentTypeListItems()
     ])

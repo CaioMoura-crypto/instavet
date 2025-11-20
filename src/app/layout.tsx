@@ -1,6 +1,7 @@
 import "@/app/globals.css";
 import { Inter, Lora } from 'next/font/google'
 import { SanityLive } from '@/sanity/lib/live'
+import Navbar from '@/components/Navbar';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${lora.variable}`}>
+        <Navbar />
         {children}
         <SanityLive />
       </body>
