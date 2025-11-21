@@ -12,6 +12,8 @@ export default {
             fontFamily: {
                 sans: ['var(--font-inter)'],
                 serif: ['var(--font-lora)'],
+                'roboto-condensed': ['var(--font-roboto-condensed)'],
+                'oswald': ['var(--font-oswald)'],
             },
         },
     },
