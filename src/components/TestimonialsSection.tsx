@@ -28,8 +28,8 @@ export default async function TestimonialsSection() {
   const testimonials = await getTestimonials();
 
   return (
-    <section id="depoimentos" className="py-16">
-      <div className="w-full max-w-6xl mx-auto bg-[#d49afd] py-12 px-10">
+    <section id="depoimentos" className="scroll-mt-[72px]">
+      <div className="w-full max-w-6xl mx-auto bg-[#d49afd] pt-16 pb-12 px-10 rounded-b-xl">
         {/* Header */}
         <div className="text-center mb-12">
           <p className="text-white text-2xl mb-2">Depoimentos</p>

@@ -39,6 +39,18 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'duration',
+      title: 'Duração',
+      type: 'string',
+      description: 'Ex: 3 dias',
+    }),
+    defineField({
+      name: 'description',
+      title: 'Descrição do Curso',
+      type: 'text',
+      rows: 6,
+    }),
+    defineField({
       name: 'spots',
       title: 'Vagas Disponíveis',
       type: 'number',

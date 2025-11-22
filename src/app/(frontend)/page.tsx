@@ -1,13 +1,19 @@
 import HeroSection from '@/components/HeroSection';
-import CoursesSection from '@/components/CoursesSection';
+import CoursesSectionServer from '@/components/CoursesSectionServer';
 import TestimonialsSection from '@/components/TestimonialsSection';
+import VideosSectionServer from '@/components/VideosSectionServer';
+import LocationSection from '@/components/LocationSection';
+import ContactForm from '@/components/ContactForm';
 
 export default function Page() {
   return (
     <main>
       <HeroSection />
-      <CoursesSection />
+      <CoursesSectionServer />
       <TestimonialsSection />
+      <VideosSectionServer />
+      <LocationSection />
+      <ContactForm />
     </main>
   );
 }
