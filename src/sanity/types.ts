@@ -13,6 +13,54 @@
  */
 
 // Source: schema.json
+export type Location = {
+  _id: string;
+  _type: "location";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  subtitle?: string;
+  address?: string;
+  whatsappUrl?: string;
+  instagramUrl?: string;
+  googleMapsEmbed?: string;
+};
+
+export type Video = {
+  _id: string;
+  _type: "video";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  category: "localizacao" | "estrutura";
+  thumbnail?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  videoFile?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    media?: unknown;
+    _type: "file";
+  };
+  videoUrl?: string;
+  order?: number;
+};
+
 export type Testimonial = {
   _id: string;
   _type: "testimonial";
@@ -58,13 +106,85 @@ export type Hero = {
   imageAlt: string;
 };
 
+export type CourseLandingPage = {
+  _id: string;
+  _type: "courseLandingPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  course: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "course";
+  };
+  isActive?: boolean;
+  heroTitle?: string;
+  heroImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  heroSubtitle?: string;
+  aboutTitle?: string;
+  aboutDescription?: string;
+  aboutVideo?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    media?: unknown;
+    _type: "file";
+  };
+  aboutImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  professorTitle?: string;
+  professorDescription?: string;
+  whyTitle?: string;
+  whyReasons?: Array<string>;
+  structureTitle?: string;
+  structureSections?: Array<{
+    title?: string;
+    items?: Array<string>;
+    _key: string;
+  }>;
+  structurePhotosUrl?: string;
+  locationTitle?: string;
+  locationName?: string;
+  locationAddress?: string;
+  locationWhatsapp?: string;
+  locationInstagram?: string;
+  locationMapEmbed?: string;
+};
+
 export type Course = {
   _id: string;
   _type: "course";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  isActive?: boolean;
   title: string;
+  slug: Slug;
   subtitle: string;
   image: {
     asset?: {
@@ -80,6 +200,8 @@ export type Course = {
   };
   date: string;
   workload: string;
+  duration?: string;
+  description?: string;
   spots: number;
   price: number;
   detailsUrl?: string;
@@ -204,5 +326,5 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Testimonial | Hero | Course | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Location | Video | Testimonial | Hero | CourseLandingPage | Course | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;

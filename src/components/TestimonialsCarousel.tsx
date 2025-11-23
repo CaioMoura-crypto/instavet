@@ -71,22 +71,6 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
     }
   }, [currentIndex, testimonials.length]);
 
-  const handlePrev = () => {
-    if (currentIndex === 0) {
-      setIsTransitioning(false);
-      setCurrentIndex(testimonials.length);
-      setTimeout(() => {
-        setIsTransitioning(true);
-        setCurrentIndex(testimonials.length - 1);
-      }, 50);
-    } else {
-      setCurrentIndex((prev) => prev - 1);
-    }
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => prev + 1);
-  };
 
   return (
     <div
@@ -94,36 +78,13 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Navigation Arrows */}
-      {testimonials.length > visibleCards && (
-        <>
-          {/* Left Arrow */}
-          <button
-            onClick={handlePrev}
-            disabled={currentIndex === 0}
-            className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 rounded-full bg-gray-800 text-white flex items-center justify-center shadow-lg transition-opacity ${
-              currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-700'
-            }`}
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
-          {/* Right Arrow */}
-          <button
-            onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 rounded-full bg-gray-800 text-white flex items-center justify-center shadow-lg transition-opacity hover:bg-gray-700"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </>
-      )}
 
       {/* Testimonials Grid with Slide Animation */}
-      <div className="overflow-hidden px-2">
+      <div className="relative overflow-hidden px-2">
+        {/* Fade effect on edges */}
+        <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#d49afd] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#d49afd] to-transparent z-10 pointer-events-none" />
+
         <div
           className={`flex ${isTransitioning ? 'transition-transform duration-1000 ease-in-out' : ''}`}
           style={{

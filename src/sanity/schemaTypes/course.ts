@@ -2,13 +2,37 @@ import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'course',
-  title: 'Curso',
+  title: 'Cursos',
   type: 'document',
   fields: [
+    defineField({
+      name: 'isActive',
+      title: 'Curso Ativo',
+      type: 'boolean',
+      description: 'Desative para ocultar o curso do site',
+      initialValue: true,
+    }),
     defineField({
       name: 'title',
       title: 'Título',
       type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      description: 'URL amigável (clique em "Generate" após preencher o título)',
+      options: {
+        source: 'title',
+        maxLength: 96,
+        slugify: input => input
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/(^-|-$)+/g, ''),
+      },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -21,9 +45,7 @@ export default defineType({
       name: 'image',
       title: 'Imagem',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
+      options: { hotspot: true },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -46,7 +68,7 @@ export default defineType({
     }),
     defineField({
       name: 'description',
-      title: 'Descrição do Curso',
+      title: 'Descrição',
       type: 'text',
       rows: 6,
     }),
@@ -78,6 +100,14 @@ export default defineType({
       title: 'title',
       media: 'image',
       subtitle: 'date',
+      isActive: 'isActive',
+    },
+    prepare({ title, media, subtitle, isActive }) {
+      return {
+        title: isActive === false ? `🚫 ${title}` : title,
+        media,
+        subtitle: isActive === false ? `(Inativo) ${subtitle}` : subtitle,
+      }
     },
   },
 })

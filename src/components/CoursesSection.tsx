@@ -155,7 +155,6 @@ export default function CoursesSection({ courses }: CoursesSectionProps) {
         ) : (
           <div className="text-center py-10 text-gray-500">
             <p>Nenhum curso disponível no momento.</p>
-            <p className="text-sm mt-2">Adicione cursos no painel do Sanity.</p>
           </div>
         )}
       </div>

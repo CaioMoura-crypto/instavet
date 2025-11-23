@@ -18,7 +18,7 @@ interface Course {
 }
 
 async function getCourses(): Promise<Course[]> {
-  const query = `*[_type == "course"] | order(date asc) [0...12] {
+  const query = `*[_type == "course" && isActive != false] | order(date asc) [0...12] {
     _id,
     title,
     subtitle,

@@ -8,15 +8,22 @@ const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
 const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
 const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
 
-export default function ContactForm() {
+interface CourseContactFormProps {
+  courseTitle: string;
+  paymentUrl?: string;
+}
+
+export default function CourseContactForm({
+  courseTitle,
+  paymentUrl,
+}: CourseContactFormProps) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    course: '',
   });
-  const [showPopup, setShowPopup] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const [error, setError] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,13 +46,13 @@ export default function ContactForm() {
           from_name: formData.name,
           from_email: formData.email,
           phone: formData.phone,
-          course: formData.course,
+          course: courseTitle,
         },
         EMAILJS_PUBLIC_KEY
       );
 
       setShowPopup(true);
-      setFormData({ name: '', email: '', phone: '', course: '' });
+      setFormData({ name: '', email: '', phone: '' });
     } catch (err) {
       console.error('EmailJS error:', err);
       setError('Erro ao enviar. Tente novamente.');
@@ -54,24 +61,39 @@ export default function ContactForm() {
     }
   };
 
+  const handlePaymentClick = () => {
+    if (paymentUrl) {
+      window.open(paymentUrl, '_blank');
+    }
+  };
+
   return (
     <>
-      <section id="contato" className="scroll-mt-[72px] py-16">
-        <div className="w-full max-w-6xl mx-auto px-8">
-          {/* Header */}
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-5xl lg:text-5xl font-bold text-black mb-4">
-              Se interessou por qual curso?
+      <section className="w-full">
+        <div className="max-w-6xl mx-auto bg-white py-12 px-6">
+          {/* Botão de matrícula */}
+          <div className="text-center mb-22">
+            <button
+              onClick={handlePaymentClick}
+              className="bg-gradient-to-r from-[#7ed321] to-[#5a9e1a] hover:from-[#6bc11a] hover:to-[#4a8a15] text-white/80 font-semibold py-2 px-6 text-sm rounded-xl transition-all uppercase"
+            >
+              Quero minha matrícula
+            </button>
+          </div>
+
+          {/* Título */}
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 uppercase tracking-tight">
+              Quer novidades? Deixe seu contato
             </h2>
-            <p className="text-gray-500/70 text-base">
+            <p className="text-gray-500">
               Preencha o formulário e dê o próximo passo na sua carreira veterinária
             </p>
           </div>
 
-          {/* Form Card */}
-          <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-lg p-8">
+          {/* Formulário */}
+          <div className="bg-white rounded-2xl shadow-lg p-8">
             <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Nome Completo */}
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
                   Nome Completo
@@ -88,7 +110,6 @@ export default function ContactForm() {
                 />
               </div>
 
-              {/* Email */}
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
                   Email
@@ -105,10 +126,9 @@ export default function ContactForm() {
                 />
               </div>
 
-              {/* Telefone */}
               <div>
                 <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Telefone
+                  Telefone (WhatsApp)
                 </label>
                 <input
                   type="tel"
@@ -122,33 +142,14 @@ export default function ContactForm() {
                 />
               </div>
 
-              {/* Curso de Interesse */}
-              <div>
-                <label htmlFor="course" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Curso de Interesse
-                </label>
-                <input
-                  type="text"
-                  id="course"
-                  name="course"
-                  value={formData.course}
-                  onChange={handleChange}
-                  placeholder="Nome do curso"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  required
-                />
-              </div>
-
-              {/* Error Message */}
               {error && (
                 <p className="text-red-500 text-sm text-center">{error}</p>
               )}
 
-              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3 bg-violet-800 hover:bg-violet-700 disabled:bg-violet-400 text-white font-medium rounded-lg transition-colors"
+                className="w-full py-3 bg-[#7ed321] hover:bg-[#6bc11a] disabled:bg-gray-400 text-white font-medium rounded-lg transition-colors"
               >
                 {isLoading ? 'Enviando...' : 'Enviar cadastro'}
               </button>
@@ -158,7 +159,7 @@ export default function ContactForm() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-violet-800 py-4">
+      <footer className="bg-[#9731C2] py-4">
         <div className="text-center text-white text-sm">
           © 2025 Todos os direitos reservados.
         </div>
@@ -179,7 +180,7 @@ export default function ContactForm() {
                 Seu cadastro foi enviado!
               </h3>
               <p className="text-gray-500 text-sm">
-                Em breve entraremos em contato pelo whatsapp
+                Em breve entraremos em contato pelo WhatsApp
               </p>
             </div>
           </div>

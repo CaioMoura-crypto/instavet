@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'video',
-  title: 'Vídeo',
+  title: 'Vídeos',
   type: 'document',
   fields: [
     defineField({
