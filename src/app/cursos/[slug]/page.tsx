@@ -19,6 +19,7 @@ interface StructureSection {
 interface LandingPage {
   _id: string;
   isActive: boolean;
+  themeColor?: string;
 
   // Curso referenciado
   course: {
@@ -66,6 +67,7 @@ interface LandingPage {
 const landingPageQuery = `*[_type == "courseLandingPage" && course->slug.current == $slug && isActive != false][0] {
   _id,
   isActive,
+  themeColor,
 
   // Curso referenciado
   course-> {
@@ -135,6 +137,7 @@ export default async function CourseLandingPage({ params }: { params: Promise<{ 
   }
 
   const { course } = landingPage;
+  const themeColor = landingPage.themeColor || '#9731C2';
 
   // Process images
   const heroImageUrl = landingPage.heroImage
@@ -157,6 +160,7 @@ export default async function CourseLandingPage({ params }: { params: Promise<{ 
         imageUrl={heroImageUrl}
         logoUrl={heroLogoUrl}
         paymentUrl={course.paymentUrl}
+        themeColor={themeColor}
       />
 
       {/* Sobre o Curso */}
@@ -166,6 +170,7 @@ export default async function CourseLandingPage({ params }: { params: Promise<{ 
         videoUrl={landingPage.aboutVideo ?? undefined}
         imageUrl={aboutImageUrl || heroImageUrl || undefined}
         paymentUrl={course.paymentUrl}
+        themeColor={themeColor}
       />
 
       {/* Sobre o Professor */}
@@ -174,6 +179,7 @@ export default async function CourseLandingPage({ params }: { params: Promise<{ 
           title={landingPage.professorTitle || 'SOBRE O PROFESSOR'}
           description={landingPage.professorDescription}
           paymentUrl={course.paymentUrl}
+          themeColor={themeColor}
         />
       )}
 
@@ -182,6 +188,7 @@ export default async function CourseLandingPage({ params }: { params: Promise<{ 
         <CourseWhySection
           title={landingPage.whyTitle || 'POR QUE DEVO FAZER ESSE CURSO?'}
           reasons={landingPage.whyReasons}
+          themeColor={themeColor}
         />
       )}
 
@@ -197,6 +204,7 @@ export default async function CourseLandingPage({ params }: { params: Promise<{ 
           locationWhatsapp={landingPage.locationWhatsapp}
           locationInstagram={landingPage.locationInstagram}
           locationMapEmbed={landingPage.locationMapEmbed}
+          themeColor={themeColor}
         />
       )}
 
@@ -204,6 +212,7 @@ export default async function CourseLandingPage({ params }: { params: Promise<{ 
       <CourseContactForm
         courseTitle={course.title}
         paymentUrl={course.paymentUrl}
+        themeColor={themeColor}
       />
     </main>
   );

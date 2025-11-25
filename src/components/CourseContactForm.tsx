@@ -11,11 +11,13 @@ const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
 interface CourseContactFormProps {
   courseTitle: string;
   paymentUrl?: string;
+  themeColor?: string;
 }
 
 export default function CourseContactForm({
   courseTitle,
   paymentUrl,
+  themeColor = '#9731C2',
 }: CourseContactFormProps) {
   const [formData, setFormData] = useState({
     name: '',
@@ -62,14 +64,18 @@ export default function CourseContactForm({
   };
 
   const handlePaymentClick = () => {
-    if (paymentUrl) {
-      window.open(paymentUrl, '_blank');
+    const formulario = document.getElementById('contato-formulario');
+    if (formulario) {
+      // Scroll um pouco mais para baixo para mostrar o formulário
+      const yOffset = 100;
+      const y = formulario.getBoundingClientRect().top + window.pageYOffset - yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
   return (
     <>
-      <section className="w-full">
+      <section id="contato-formulario" className="w-full scroll-mt-20">
         <div className="max-w-6xl mx-auto bg-white py-12 px-6">
           {/* Botão de matrícula */}
           <div className="text-center mb-22">
@@ -81,7 +87,7 @@ export default function CourseContactForm({
             </button>
           </div>
 
-          {/* Título */}
+          {/* Seção de título */}
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 uppercase tracking-tight">
               Quer novidades? Deixe seu contato
@@ -105,7 +111,8 @@ export default function CourseContactForm({
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Seu nome completo"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:border-transparent"
+                  style={{'--tw-ring-color': themeColor} as React.CSSProperties}
                   required
                 />
               </div>
@@ -121,7 +128,8 @@ export default function CourseContactForm({
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Seu@email.com"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:border-transparent"
+                  style={{'--tw-ring-color': themeColor} as React.CSSProperties}
                   required
                 />
               </div>
@@ -137,7 +145,8 @@ export default function CourseContactForm({
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="(00) 00000-0000"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:border-transparent"
+                  style={{'--tw-ring-color': themeColor} as React.CSSProperties}
                   required
                 />
               </div>
@@ -159,13 +168,13 @@ export default function CourseContactForm({
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#9731C2] py-4">
+      <footer className="py-4" style={{backgroundColor: themeColor}}>
         <div className="text-center text-white text-sm">
           © 2025 Todos os direitos reservados.
         </div>
       </footer>
 
-      {/* Success Popup */}
+      {/* Modal: confirmação de envio */}
       {showPopup && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-8 max-w-sm mx-4 relative shadow-xl">

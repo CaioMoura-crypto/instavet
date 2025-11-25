@@ -1,13 +1,17 @@
 import Image from 'next/image';
 
-export default function Navbar() {
+interface NavbarProps {
+  logoUrl?: string | null;
+}
+
+export default function Navbar({ logoUrl }: NavbarProps) {
   return (
     <nav className="fixed top-0 left-1/2 transform -translate-x-1/2 w-full max-w-6xl bg-gradient-to-r from-white/90 to-black/90 p-0.1 shadow-md z-50 backdrop-blur-sm">
       <div className="flex justify-between items-center px-10">
         {/* Logo da empresa */}
         <div className="flex-shrink-0">
           <Image
-            src="/logo.png"
+            src={logoUrl || "/logo.png"}
             alt="Logo da Empresa"
             width={101}
             height={33}

@@ -4,23 +4,26 @@ interface CourseProfessorProps {
   title: string;
   description: string;
   paymentUrl?: string;
+  themeColor?: string;
 }
 
 export default function CourseProfessor({
   title,
   description,
   paymentUrl,
+  themeColor = '#9731C2',
 }: CourseProfessorProps) {
   const handleButtonClick = () => {
-    if (paymentUrl) {
-      window.open(paymentUrl, '_blank');
+    const formulario = document.getElementById('contato-formulario');
+    if (formulario) {
+      formulario.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
   return (
     <section className="w-full">
       <div className="max-w-6xl mx-auto bg-[#f5f5f5] py-16 px-6 text-center">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#9731C2] mb-8 uppercase tracking-tight">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 uppercase tracking-tight" style={{color: themeColor}}>
           {title}
         </h2>
 

@@ -5,7 +5,8 @@ import hero from './hero'
 import testimonial from './testimonial'
 import video from './video'
 import location from './location'
+import siteSettings from './siteSettings'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [course, courseLandingPage, hero, testimonial, video, location],
+  types: [course, courseLandingPage, hero, testimonial, video, location, siteSettings],
 }

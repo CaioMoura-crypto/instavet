@@ -133,6 +133,18 @@ export type CourseLandingPage = {
     _type: "image";
   };
   heroSubtitle?: string;
+  heroLogo?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
   aboutTitle?: string;
   aboutDescription?: string;
   aboutVideo?: {
@@ -167,7 +179,19 @@ export type CourseLandingPage = {
     items?: Array<string>;
     _key: string;
   }>;
-  structurePhotosUrl?: string;
+  structurePhotos?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
   locationTitle?: string;
   locationName?: string;
   locationAddress?: string;

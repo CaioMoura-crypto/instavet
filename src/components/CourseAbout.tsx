@@ -9,6 +9,7 @@ interface CourseAboutProps {
   videoUrl?: string;
   imageUrl?: string;
   paymentUrl?: string;
+  themeColor?: string;
 }
 
 const MAX_CHARS = 200;
@@ -19,6 +20,7 @@ export default function CourseAbout({
   videoUrl,
   imageUrl,
   paymentUrl,
+  themeColor = '#9731C2',
 }: CourseAboutProps) {
   const [showFullText, setShowFullText] = useState(false);
   const [showVideoPopup, setShowVideoPopup] = useState(false);
@@ -30,17 +32,18 @@ export default function CourseAbout({
     : description;
 
   const handleButtonClick = () => {
-    if (paymentUrl) {
-      window.open(paymentUrl, '_blank');
+    const formulario = document.getElementById('contato-formulario');
+    if (formulario) {
+      formulario.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
   return (
     <>
       <section className="w-full">
-        {/* Seção principal */}
-        <div className="max-w-6xl mx-auto bg-[#9731C2] flex flex-col md:flex-row">
-          {/* Conteúdo texto */}
+        {/* Seção "Sobre o Curso" */}
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row" style={{backgroundColor: themeColor}}>
+          {/* Painel esquerdo: título e descrição */}
           <div className="w-full md:w-1/2 py-12 px-6 md:px-12 flex flex-col justify-center overflow-hidden">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 uppercase tracking-tight">
                 {title}
@@ -66,7 +69,7 @@ export default function CourseAbout({
               </div>
             </div>
 
-            {/* Vídeo ou Imagem */}
+            {/* Painel direito: mídia */}
             <div className="w-full md:w-1/2 relative min-h-[300px] md:min-h-full">
                 {hasVideo ? (
                   <div
@@ -81,11 +84,12 @@ export default function CourseAbout({
                         className="object-cover"
                       />
                     )}
-                    {/* Play button */}
+                    {/* Botão de play */}
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-16 h-16 md:w-20 md:h-20 bg-white/90 rounded-full flex items-center justify-center group-hover:bg-white transition-colors">
                         <svg
-                          className="w-8 h-8 md:w-10 md:h-10 text-purple-600 ml-1"
+                          className="w-8 h-8 md:w-10 md:h-10 ml-1"
+                          style={{color: themeColor}}
                           fill="currentColor"
                           viewBox="0 0 24 24"
                         >
@@ -110,7 +114,7 @@ export default function CourseAbout({
         </div>
       </section>
 
-      {/* Popup de texto completo */}
+      {/* Modal: descrição completa */}
       {showFullText && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4 relative shadow-xl">
@@ -130,7 +134,7 @@ export default function CourseAbout({
         </div>
       )}
 
-      {/* Popup de vídeo */}
+      {/* Modal: player de vídeo */}
       {showVideoPopup && videoUrl && (
         <div
           className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"

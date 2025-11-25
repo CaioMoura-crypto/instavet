@@ -62,6 +62,24 @@ export default defineType({
       initialValue: true,
       fieldset: 'basic',
     }),
+    defineField({
+      name: 'themeColor',
+      title: 'Cor do Tema',
+      type: 'string',
+      description: 'Escolha a cor principal da landing page',
+      options: {
+        list: [
+          { title: 'Roxo', value: '#9731C2' },
+          { title: 'Vermelho', value: '#EC2A2A' },
+          { title: 'Azul', value: '#4F32E6' },
+          { title: 'Verde', value: '#5AAC47' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: '#9731C2',
+      validation: (Rule) => Rule.required(),
+      fieldset: 'basic',
+    }),
 
     // Seção Hero
     defineField({

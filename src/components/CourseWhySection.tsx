@@ -1,15 +1,17 @@
 interface CourseWhySectionProps {
   title: string;
   reasons: string[];
+  themeColor?: string;
 }
 
 export default function CourseWhySection({
   title,
   reasons,
+  themeColor = '#9731C2',
 }: CourseWhySectionProps) {
   return (
     <section className="w-full">
-      <div className="max-w-6xl mx-auto bg-[#9731C2] py-16 px-6">
+      <div className="max-w-6xl mx-auto py-16 px-6" style={{backgroundColor: themeColor}}>
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white text-center mb-12 uppercase tracking-tight">
           {title}
         </h2>
@@ -17,7 +19,7 @@ export default function CourseWhySection({
         <div className="space-y-8">
           {reasons.map((reason, index) => (
             <div key={index} className="flex items-center gap-4">
-              {/* Checkmark icon */}
+              {/* Ícone de check */}
               <div className="flex-shrink-0">
                 <svg
                   className="w-12 h-12 md:w-14 md:h-14 text-[#7ed321]"
