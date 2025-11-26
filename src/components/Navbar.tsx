@@ -1,13 +1,35 @@
+'use client';
+
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 interface NavbarProps {
   logoUrl?: string | null;
 }
 
 export default function Navbar({ logoUrl }: NavbarProps) {
+  const [isBlurred, setIsBlurred] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroSection = document.querySelector('section');
+      if (heroSection) {
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+        setIsBlurred(heroBottom <= 0);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-1/2 transform -translate-x-1/2 w-full max-w-6xl bg-gradient-to-r from-white/90 to-black/90 p-0.1 shadow-md z-50 backdrop-blur-sm">
-      <div className="flex justify-between items-center px-10">
+    <nav className={`fixed top-0 left-1/2 transform -translate-x-1/2 w-full max-w-6xl shadow-md z-50 overflow-hidden transition-all duration-300 ${isBlurred ? '[backdrop-filter:blur(2px)]' : ''}`}>
+      <div className={`absolute inset-0 bg-gradient-to-r transition-opacity duration-300 ${isBlurred ? 'from-blue-100/40 via-purple-700/40 to-purple-900/40' : 'from-blue-100/20 via-purple-700/20 to-purple-900/20'}`}></div>
+      <div className={`absolute inset-0 bg-black/10 transition-opacity duration-300 ${isBlurred ? 'opacity-100' : 'opacity-0'}`}></div>
+      <div className="flex justify-between items-center px-10 relative z-10">
         {/* Logo da empresa */}
         <div className="flex-shrink-0">
           <Image

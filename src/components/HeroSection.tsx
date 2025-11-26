@@ -23,20 +23,20 @@ export default async function HeroSection() {
     : null;
 
   return (
-    <section className="pt-18">
+    <section className="pt-0">
       <div
-        className="w-full max-w-6xl mx-auto px-10 py-30 text-center relative overflow-hidden"
+        className="w-full max-w-6xl mx-auto px-10 pt-40 pb-30 text-center relative overflow-hidden"
       >
-        {/* Background Image */}
+        {/* Background Image - Extended to cover navbar area */}
         {backgroundImageUrl && (
           <div
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 -top-20 bg-cover bg-center"
             style={{ backgroundImage: `url(${backgroundImageUrl})` }}
           />
         )}
 
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/90 via-purple-500/90 to-purple-400/90" />
+        {/* Gradient Overlay - Only on Hero, not extending to navbar */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-950/75 via-purple-800/75 to-purple-950/75" />
 
         {/* Content */}
         <div className="relative z-10">

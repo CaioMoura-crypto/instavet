@@ -13,6 +13,26 @@
  */
 
 // Source: schema.json
+export type SiteSettings = {
+  _id: string;
+  _type: "siteSettings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  navbarLogo?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+};
+
 export type Location = {
   _id: string;
   _type: "location";
@@ -119,6 +139,7 @@ export type CourseLandingPage = {
     [internalGroqTypeReferenceTo]?: "course";
   };
   isActive?: boolean;
+  themeColor: "#9731C2" | "#EC2A2A" | "#4F32E6" | "#5AAC47";
   heroTitle?: string;
   heroImage?: {
     asset?: {
@@ -350,5 +371,5 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Location | Video | Testimonial | Hero | CourseLandingPage | Course | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = SiteSettings | Location | Video | Testimonial | Hero | CourseLandingPage | Course | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
