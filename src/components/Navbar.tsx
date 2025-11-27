@@ -26,10 +26,10 @@ export default function Navbar({ logoUrl }: NavbarProps) {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-1/2 transform -translate-x-1/2 w-full max-w-6xl shadow-md z-50 overflow-hidden transition-all duration-300 ${isBlurred ? '[backdrop-filter:blur(2px)]' : ''}`}>
+    <nav className={`fixed top-0 w-full shadow-md z-50 transition-all duration-300 ${isBlurred ? '[backdrop-filter:blur(2px)]' : ''}`}>
       <div className={`absolute inset-0 bg-gradient-to-r transition-opacity duration-300 ${isBlurred ? 'from-blue-100/40 via-purple-700/40 to-purple-900/40' : 'from-blue-100/20 via-purple-700/20 to-purple-900/20'}`}></div>
       <div className={`absolute inset-0 bg-black/10 transition-opacity duration-300 ${isBlurred ? 'opacity-100' : 'opacity-0'}`}></div>
-      <div className="flex justify-between items-center px-10 relative z-10">
+      <div className="max-w-6xl mx-auto flex justify-between items-center px-6 md:px-10 relative z-10">
         {/* Logo da empresa */}
         <div className="flex-shrink-0">
           <Image
@@ -42,7 +42,7 @@ export default function Navbar({ logoUrl }: NavbarProps) {
         </div>
 
         {/* Menu de navegação */}
-        <ul className="flex space-x-8 text-sm">
+        <ul className="flex space-x-4 md:space-x-8 text-xs md:text-sm">
           <li>
             <a href="#cursos" className="text-white uppercase hover:text-gray-300 transition-colors duration-200 font-bold">
               CURSOS

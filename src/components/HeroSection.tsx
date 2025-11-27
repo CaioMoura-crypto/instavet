@@ -23,10 +23,8 @@ export default async function HeroSection() {
     : null;
 
   return (
-    <section className="pt-0">
-      <div
-        className="w-full max-w-6xl mx-auto px-10 pt-40 pb-30 text-center relative overflow-hidden"
-      >
+    <section className="w-full pt-0">
+      <div className="max-w-6xl mx-auto px-6 md:px-10 pt-40 pb-30 text-center relative overflow-hidden">
         {/* Background Image - Extended to cover navbar area */}
         {backgroundImageUrl && (
           <div
@@ -40,11 +38,11 @@ export default async function HeroSection() {
 
         {/* Content */}
         <div className="relative z-10">
-          <h1 className="font-roboto-condensed text-white mb-4 tracking-tight font-bold" style={{ fontFamily: 'var(--font-roboto-condensed)', fontWeight: 700, letterSpacing: '-0.02em', fontStretch: 'condensed', transform: 'scaleY(1.2)', fontSize: '3.5rem', whiteSpace: 'nowrap' }}>
+          <h1 className="font-roboto-condensed text-white mb-4 tracking-tight font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl" style={{ fontFamily: 'var(--font-roboto-condensed)', fontWeight: 700, letterSpacing: '-0.02em', fontStretch: 'condensed', transform: 'scaleY(1.2)' }}>
             ESPECIALIZAÇÃO VETERINÁRIA
           </h1>
 
-          <p className="text-lg md:text-2xl lg:text-2xl text-white mb-7 leading-relaxed max-w-3xl mx-auto font-medium">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-7 leading-relaxed max-w-3xl mx-auto font-medium">
             Cursos de Excelência para profissionais que buscam
             <br />
             se destacar na medicina veterinária
