@@ -24,7 +24,7 @@ export default async function HeroSection() {
 
   return (
     <section className="w-full pt-0">
-      <div className="max-w-6xl mx-auto px-6 md:px-10 pt-40 pb-30 text-center relative overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 md:px-10 pt-48 pb-40 text-center relative overflow-hidden">
         {/* Background Image - Extended to cover navbar area */}
         {backgroundImageUrl && (
           <div
