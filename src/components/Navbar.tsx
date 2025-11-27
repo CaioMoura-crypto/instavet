@@ -31,47 +31,47 @@ export default function Navbar({ logoUrl }: NavbarProps) {
         <div className={`absolute inset-0 bg-gradient-to-r transition-opacity duration-300 ${isBlurred ? 'from-blue-100/40 via-purple-700/40 to-purple-900/40' : 'from-blue-100/20 via-purple-700/20 to-purple-900/20'}`}></div>
         <div className={`absolute inset-0 bg-black/10 transition-opacity duration-300 ${isBlurred ? 'opacity-100' : 'opacity-0'}`}></div>
         <div className="flex justify-between items-center px-3 py-2 md:px-10 md:py-0 relative z-10">
-        {/* Logo da empresa */}
-        <div className="flex-shrink-0">
-          <Image
-            src={logoUrl || "/logo.png"}
-            alt="Logo da Empresa"
-            width={101}
-            height={33}
-            priority
-            className="w-16 h-auto sm:w-20 md:w-[101px]"
-          />
-        </div>
+          {/* Logo da empresa */}
+          <div className="flex-shrink-0">
+            <Image
+              src={logoUrl || "/logo.png"}
+              alt="Logo da Empresa"
+              width={101}
+              height={33}
+              priority
+              className="w-16 h-auto sm:w-20 md:w-[101px]"
+            />
+          </div>
 
-        {/* Menu de navegação */}
-        <ul className="flex space-x-1.5 sm:space-x-3 md:space-x-4 text-[9px] sm:text-xs md:text-xs">
-          <li>
-            <a href="#cursos" className="text-white uppercase hover:text-gray-300 transition-colors duration-200 font-bold">
-              CURSOS
-            </a>
-          </li>
-          <li>
-            <a href="#depoimentos" className="text-white uppercase hover:text-gray-300 transition-colors duration-200 font-bold">
-              DEPOIMENTOS
-            </a>
-          </li>
-          <li>
-            <a href="#videos" className="text-white uppercase hover:text-gray-300 transition-colors duration-200 font-bold">
-              VÍDEO
-            </a>
-          </li>
-          <li>
-            <a href="#localizacao" className="text-white uppercase hover:text-gray-300 transition-colors duration-200 font-bold">
-              LOCALIZAÇÃO
-            </a>
-          </li>
-          <li>
-            <a href="#contato" className="text-white uppercase hover:text-gray-300 transition-colors duration-200 font-bold">
-              CONTATO
-            </a>
-          </li>
-        </ul>
-      </div>
+          {/* Menu de navegação */}
+          <ul className="flex space-x-1.5 sm:space-x-3 md:space-x-4 text-[9px] sm:text-xs md:text-xs">
+            <li>
+              <a href="#cursos" className="text-white uppercase hover:text-gray-300 transition-colors duration-200 font-bold">
+                CURSOS
+              </a>
+            </li>
+            <li>
+              <a href="#depoimentos" className="text-white uppercase hover:text-gray-300 transition-colors duration-200 font-bold">
+                DEPOIMENTOS
+              </a>
+            </li>
+            <li>
+              <a href="#videos" className="text-white uppercase hover:text-gray-300 transition-colors duration-200 font-bold">
+                VÍDEO
+              </a>
+            </li>
+            <li>
+              <a href="#localizacao" className="text-white uppercase hover:text-gray-300 transition-colors duration-200 font-bold">
+                LOCALIZAÇÃO
+              </a>
+            </li>
+            <li>
+              <a href="#contato" className="text-white uppercase hover:text-gray-300 transition-colors duration-200 font-bold">
+                CONTATO
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );
