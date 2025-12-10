@@ -1,4 +1,17 @@
+'use client';
+
 import { client } from '@/sanity/lib/client';
+import { urlFor } from '@/sanity/lib/image';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+
+interface GalleryImage {
+  _key: string;
+  asset: {
+    _ref: string;
+  };
+  alt?: string;
+}
 
 interface Location {
   _id: string;
@@ -8,6 +21,7 @@ interface Location {
   whatsappUrl?: string;
   instagramUrl?: string;
   googleMapsEmbed?: string;
+  gallery?: GalleryImage[];
 }
 
 async function getLocation(): Promise<Location | null> {
@@ -18,14 +32,52 @@ async function getLocation(): Promise<Location | null> {
     address,
     whatsappUrl,
     instagramUrl,
-    googleMapsEmbed
+    googleMapsEmbed,
+    gallery[] {
+      _key,
+      asset,
+      alt
+    }
   }`;
 
   return client.fetch(query);
 }
 
-export default async function LocationSection() {
-  const location = await getLocation();
+export default function LocationSection() {
+  const [location, setLocation] = useState<Location | null>(null);
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+
+  useEffect(() => {
+    getLocation().then(setLocation);
+  }, []);
+
+  const currentImageIndex = selectedImage && location?.gallery
+    ? location.gallery.findIndex((img) => img._key === selectedImage._key)
+    : -1;
+
+  const handlePrevImage = () => {
+    if (location?.gallery && currentImageIndex > 0) {
+      setSelectedImage(location.gallery[currentImageIndex - 1]);
+    }
+  };
+
+  const handleNextImage = () => {
+    if (location?.gallery && currentImageIndex < location.gallery.length - 1) {
+      setSelectedImage(location.gallery[currentImageIndex + 1]);
+    }
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!selectedImage) return;
+      if (e.key === 'ArrowLeft') handlePrevImage();
+      if (e.key === 'ArrowRight') handleNextImage();
+      if (e.key === 'Escape') setSelectedImage(null);
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedImage, currentImageIndex]);
 
   if (!location) {
     return null;
@@ -88,7 +140,90 @@ export default async function LocationSection() {
                 Instagram
               </a>
             </div>
+
+            {/* Mini Gallery */}
+            {location.gallery && location.gallery.length > 0 && (
+              <div className="bg-white rounded-xl p-4 shadow-sm">
+                <div className="grid grid-cols-3 gap-2">
+                  {location.gallery.slice(0, 6).map((image) => (
+                    <div
+                      key={image._key}
+                      className="relative aspect-square rounded-lg overflow-hidden group cursor-pointer"
+                      onClick={() => setSelectedImage(image)}
+                    >
+                      <Image
+                        src={urlFor(image.asset).width(200).height(200).url()}
+                        alt={image.alt || 'Imagem da localização'}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-110"
+                        sizes="(max-width: 768px) 33vw, 150px"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
+
+          {/* Image Modal */}
+          {selectedImage && (
+            <div
+              className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+              onClick={() => setSelectedImage(null)}
+            >
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-10"
+                aria-label="Fechar"
+              >
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* Previous Button */}
+              {currentImageIndex > 0 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handlePrevImage();
+                  }}
+                  className="absolute left-4 text-white hover:text-gray-300 transition-colors z-10 bg-black/50 rounded-full p-2"
+                  aria-label="Imagem anterior"
+                >
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+              )}
+
+              {/* Next Button */}
+              {location?.gallery && currentImageIndex < location.gallery.length - 1 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNextImage();
+                  }}
+                  className="absolute right-4 text-white hover:text-gray-300 transition-colors z-10 bg-black/50 rounded-full p-2"
+                  aria-label="Próxima imagem"
+                >
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              )}
+
+              <div className="relative max-w-2xl max-h-[70vh] w-full h-full" onClick={(e) => e.stopPropagation()}>
+                <Image
+                  src={urlFor(selectedImage.asset).width(600).height(600).url()}
+                  alt={selectedImage.alt || 'Imagem da localização'}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 600px"
+                />
+              </div>
+            </div>
+          )}
 
           {/* Google Maps */}
           <div className="flex-1 rounded-xl overflow-hidden shadow-sm min-h-[400px] md:min-h-[300px]">

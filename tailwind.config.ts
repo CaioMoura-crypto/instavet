@@ -14,6 +14,7 @@ export default {
                 serif: ['var(--font-lora)'],
                 'roboto-condensed': ['var(--font-roboto-condensed)'],
                 'oswald': ['var(--font-oswald)'],
+                'bebas-neue': ['var(--font-bebas-neue)'],
             },
         },
     },

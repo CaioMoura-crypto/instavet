@@ -23,11 +23,11 @@ export default function CourseProfessor({
   return (
     <section className="w-full">
       <div className="max-w-6xl mx-auto bg-[#f5f5f5] py-16 px-6 text-center">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 uppercase tracking-tight" style={{color: themeColor}}>
+        <h2 className="font-bebas-neue text-4xl md:text-5xl lg:text-6xl mb-8 uppercase tracking-tight" style={{color: themeColor}}>
           {title}
         </h2>
 
-        <p className="text-gray-700 text-sm md:text-base leading-relaxed mb-8">
+        <p className="text-gray-700 text-lg md:text-xl leading-relaxed mb-8">
           {description}
         </p>
 

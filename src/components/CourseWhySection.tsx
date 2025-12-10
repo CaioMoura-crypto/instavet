@@ -12,7 +12,7 @@ export default function CourseWhySection({
   return (
     <section className="w-full">
       <div className="max-w-6xl mx-auto py-16 px-6" style={{backgroundColor: themeColor}}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white text-center mb-12 uppercase tracking-tight">
+        <h2 className="font-bebas-neue text-3xl md:text-4xl lg:text-5xl text-white text-center mb-12 uppercase tracking-tight">
           {title}
         </h2>
 
@@ -33,7 +33,7 @@ export default function CourseWhySection({
                 </svg>
               </div>
 
-              <p className="text-white text-lg md:text-xl font-bold uppercase">
+              <p className="font-bebas-neue text-white text-xl md:text-2xl uppercase">
                 {reason}
               </p>
             </div>

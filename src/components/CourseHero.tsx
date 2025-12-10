@@ -67,12 +67,12 @@ export default function CourseHero({
           </div>
 
           {/* Título do curso */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white uppercase leading-tight mb-6 tracking-tight relative z-10">
+          <h1 className="font-bebas-neue text-4xl md:text-5xl lg:text-6xl text-white uppercase leading-tight mb-6 tracking-tight relative z-10">
             {title}
           </h1>
 
           {/* Descrição do curso */}
-          <p className="text-white/90 text-base md:text-lg mb-8 max-w-md relative z-10">
+          <p className="text-white/90 text-lg md:text-xl mb-8 max-w-md relative z-10">
             {subtitle}
           </p>
 

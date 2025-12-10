@@ -45,7 +45,7 @@ export default function CourseStructureLocation({
         <div className="bg-white rounded-xl overflow-hidden shadow-md border border-current/50" style={{color: themeColor}}>
           <div className="h-6" style={{backgroundColor: themeColor}} />
           <div className="p-6">
-            <h3 className="text-xl md:text-2xl font-bold text-current mb-6 uppercase tracking-tight">
+            <h3 className="font-bebas-neue text-2xl md:text-3xl text-current mb-6 uppercase tracking-tight">
               {structureTitle}
             </h3>
 
@@ -82,7 +82,7 @@ export default function CourseStructureLocation({
         <div className="bg-white rounded-xl overflow-hidden shadow-md border border-current/50" style={{color: themeColor}}>
           <div className="h-6" style={{backgroundColor: themeColor}} />
           <div className="p-6">
-            <h3 className="text-xl md:text-2xl font-bold text-current mb-6 uppercase tracking-tight">
+            <h3 className="font-bebas-neue text-2xl md:text-3xl text-current mb-6 uppercase tracking-tight">
               {locationTitle}
             </h3>
 

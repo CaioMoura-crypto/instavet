@@ -28,7 +28,7 @@ export default function Navbar({ logoUrl }: NavbarProps) {
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 flex justify-center`}>
       <div className={`relative w-full max-w-6xl shadow-md ${isBlurred ? '[backdrop-filter:blur(2px)]' : ''}`}>
-        <div className={`absolute inset-0 bg-gradient-to-r transition-opacity duration-300 ${isBlurred ? 'from-blue-100/40 via-purple-700/40 to-purple-900/40' : 'from-blue-100/20 via-purple-700/20 to-purple-900/20'}`}></div>
+        <div className={`absolute inset-0 bg-gradient-to-r transition-opacity duration-300 ${isBlurred ? 'from-blue-100/90 via-purple-700/65 to-purple-900/50' : 'from-blue-100/70 via-purple-700/45 to-purple-900/30'}`}></div>
         <div className={`absolute inset-0 bg-black/10 transition-opacity duration-300 ${isBlurred ? 'opacity-100' : 'opacity-0'}`}></div>
         <div className="flex justify-between items-center px-3 py-2 md:px-10 md:py-0 relative z-10">
           {/* Logo da empresa */}

@@ -40,6 +40,27 @@ export default defineType({
       type: 'text',
       description: 'Cole aqui a URL do iframe do Google Maps (src do iframe)',
     }),
+    defineField({
+      name: 'gallery',
+      title: 'Galeria de Fotos',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Texto alternativo',
+            },
+          ],
+        },
+      ],
+      description: 'Galeria de fotos da localização',
+    }),
   ],
   preview: {
     select: {

@@ -45,10 +45,10 @@ export default function CourseAbout({
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row" style={{backgroundColor: themeColor}}>
           {/* Painel esquerdo: título e descrição */}
           <div className="w-full md:w-1/2 py-12 px-6 md:px-12 flex flex-col justify-center overflow-hidden">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 uppercase tracking-tight">
+              <h2 className="font-bebas-neue text-4xl md:text-5xl text-white mb-6 uppercase tracking-tight">
                 {title}
               </h2>
-              <p className="text-white/90 text-sm md:text-base leading-relaxed mb-4 break-words">
+              <p className="text-white/90 text-base md:text-lg leading-relaxed mb-4 break-words">
                 {truncatedText}
               </p>
               {needsTruncation && (

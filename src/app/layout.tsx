@@ -1,5 +1,5 @@
 import "@/app/globals.css";
-import { Inter, Lora, Roboto_Condensed, Oswald, Dancing_Script } from 'next/font/google'
+import { Inter, Lora, Roboto_Condensed, Oswald, Dancing_Script, Bebas_Neue } from 'next/font/google'
 import { SanityLive } from '@/sanity/lib/live'
 
 const inter = Inter({
@@ -30,6 +30,12 @@ const dancingScript = Dancing_Script({
   weight: ['400', '700'],
 })
 
+const bebasNeue = Bebas_Neue({
+  subsets: ['latin'],
+  variable: '--font-bebas-neue',
+  weight: '400',
+})
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -37,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${lora.variable} ${robotoCondensed.variable} ${oswald.variable} ${dancingScript.variable}`}>
+      <body className={`${inter.variable} ${lora.variable} ${robotoCondensed.variable} ${oswald.variable} ${dancingScript.variable} ${bebasNeue.variable}`}>
         {children}
         <SanityLive />
       </body>
