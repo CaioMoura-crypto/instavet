@@ -1,12 +1,23 @@
 import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
 import VideosSection from './VideosSection';
+import type { SanityImageCrop, SanityImageHotspot } from '@/sanity/types';
+
+interface SanityImage {
+  asset?: {
+    _ref: string;
+    _type: 'reference';
+  };
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: 'image';
+}
 
 interface Video {
   _id: string;
   title: string;
   category: string;
-  thumbnail: any;
+  thumbnail?: SanityImage;
   videoFile?: {
     asset: {
       _ref: string;

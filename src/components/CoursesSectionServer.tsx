@@ -1,6 +1,17 @@
 import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
 import CoursesSection from './CoursesSection';
+import type { SanityImageCrop, SanityImageHotspot } from '@/sanity/types';
+
+interface SanityImage {
+  asset?: {
+    _ref: string;
+    _type: 'reference';
+  };
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: 'image';
+}
 
 interface Course {
   _id: string;
@@ -12,7 +23,7 @@ interface Course {
   description?: string;
   spots: number;
   price: number;
-  image: any;
+  image: SanityImage;
   detailsUrl?: string;
   paymentUrl?: string;
 }

@@ -1,6 +1,7 @@
 import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
 import { notFound } from 'next/navigation';
+import type { SanityImageCrop, SanityImageHotspot } from '@/sanity/types';
 
 // Components
 import CourseHero from '@/components/CourseHero';
@@ -14,6 +15,16 @@ import CourseContactForm from '@/components/CourseContactForm';
 interface StructureSection {
   title: string;
   items: string[];
+}
+
+interface SanityImage {
+  asset?: {
+    _ref: string;
+    _type: 'reference';
+  };
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: 'image';
 }
 
 interface LandingPage {
@@ -31,15 +42,15 @@ interface LandingPage {
 
   // Hero
   heroTitle?: string;
-  heroImage?: any;
+  heroImage?: SanityImage;
   heroSubtitle?: string;
-  heroLogo?: any;
+  heroLogo?: SanityImage;
 
   // Sobre o Curso
   aboutTitle?: string;
   aboutDescription?: string;
   aboutVideo?: string | null;
-  aboutImage?: any;
+  aboutImage?: SanityImage;
 
   // Professor
   professorTitle?: string;
@@ -52,7 +63,7 @@ interface LandingPage {
   // Estrutura
   structureTitle?: string;
   structureSections?: StructureSection[];
-  structurePhotos?: any[];
+  structurePhotos?: SanityImage[];
 
   // Localização
   locationTitle?: string;
@@ -197,7 +208,7 @@ export default async function CourseLandingPage({ params }: { params: Promise<{ 
         <CourseStructureLocation
           structureTitle={landingPage.structureTitle || 'ESTRUTURA DO INSTAVET'}
           structureSections={landingPage.structureSections || []}
-          structurePhotos={landingPage.structurePhotos?.map((photo: any) => urlFor(photo).width(600).height(400).url()) || []}
+          structurePhotos={landingPage.structurePhotos?.map((photo) => urlFor(photo).width(600).height(400).url()) || []}
           locationTitle={landingPage.locationTitle || 'LOCALIZAÇÃO E CONTATOS'}
           locationName={landingPage.locationName}
           locationAddress={landingPage.locationAddress}

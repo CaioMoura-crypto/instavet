@@ -1,12 +1,23 @@
 import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
 import TestimonialsCarousel from './TestimonialsCarousel';
+import type { SanityImageCrop, SanityImageHotspot } from '@/sanity/types';
+
+interface SanityImage {
+  asset?: {
+    _ref: string;
+    _type: 'reference';
+  };
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: 'image';
+}
 
 interface Testimonial {
   _id: string;
   name: string;
   role: string;
-  photo: any;
+  photo?: SanityImage;
   testimonial: string;
   fullTestimonialUrl?: string;
 }
