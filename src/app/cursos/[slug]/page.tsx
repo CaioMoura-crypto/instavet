@@ -124,7 +124,7 @@ const landingPageQuery = `*[_type == "courseLandingPage" && course->slug.current
 
 async function getLandingPage(slug: string): Promise<LandingPage | null> {
   return client.fetch(landingPageQuery, { slug }, {
-    next: { revalidate: 60 } // Revalidate every 60 seconds
+    next: { revalidate: 10 } // Revalidate every 10 seconds
   });
 }
 
@@ -133,7 +133,7 @@ export async function generateStaticParams() {
     "slug": course->slug.current
   }`;
   const landingPages = await client.fetch(query, {}, {
-    next: { revalidate: 60 } // Revalidate every 60 seconds
+    next: { revalidate: 10 } // Revalidate every 10 seconds
   });
 
   return landingPages

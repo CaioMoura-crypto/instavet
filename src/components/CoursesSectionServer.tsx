@@ -45,7 +45,7 @@ async function getCourses(): Promise<Course[]> {
   }`;
 
   return client.fetch(query, {}, {
-    next: { revalidate: 60 } // Revalidate every 60 seconds
+    next: { revalidate: 10 } // Revalidate every 10 seconds
   });
 }
 
