@@ -6,7 +6,9 @@ async function getSiteSettings() {
   const query = `*[_type == "siteSettings"][0] {
     navbarLogo
   }`;
-  return client.fetch(query);
+  return client.fetch(query, {}, {
+    next: { revalidate: 60 } // Revalidate every 60 seconds
+  });
 }
 
 export default async function FrontendLayout({

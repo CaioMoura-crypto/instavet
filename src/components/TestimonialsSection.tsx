@@ -32,7 +32,9 @@ async function getTestimonials(): Promise<Testimonial[]> {
     fullTestimonialUrl
   }`;
 
-  return client.fetch(query);
+  return client.fetch(query, {}, {
+    next: { revalidate: 60 } // Revalidate every 60 seconds
+  });
 }
 
 export default async function TestimonialsSection() {

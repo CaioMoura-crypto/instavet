@@ -123,14 +123,18 @@ const landingPageQuery = `*[_type == "courseLandingPage" && course->slug.current
 }`;
 
 async function getLandingPage(slug: string): Promise<LandingPage | null> {
-  return client.fetch(landingPageQuery, { slug });
+  return client.fetch(landingPageQuery, { slug }, {
+    next: { revalidate: 60 } // Revalidate every 60 seconds
+  });
 }
 
 export async function generateStaticParams() {
   const query = `*[_type == "courseLandingPage" && isActive != false] {
     "slug": course->slug.current
   }`;
-  const landingPages = await client.fetch(query);
+  const landingPages = await client.fetch(query, {}, {
+    next: { revalidate: 60 } // Revalidate every 60 seconds
+  });
 
   return landingPages
     .filter((lp: { slug: string | null }) => lp.slug)
