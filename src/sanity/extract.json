@@ -640,6 +640,27 @@
           "type": "string"
         }
       },
+      "titulo": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": false
+      },
+      "subtitulo": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": false
+      },
+      "textoBotao": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": false
+      },
       "backgroundImage": {
         "type": "objectAttribute",
         "value": {

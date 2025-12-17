@@ -125,6 +125,9 @@ export type Hero = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  titulo: string;
+  subtitulo: string;
+  textoBotao: string;
   backgroundImage: {
     asset?: {
       _ref: string;

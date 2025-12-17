@@ -6,6 +6,25 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'titulo',
+      title: 'Título Principal',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'subtitulo',
+      title: 'Subtítulo/Descrição',
+      type: 'text',
+      rows: 3,
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'textoBotao',
+      title: 'Texto do Botão',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'backgroundImage',
       title: 'Imagem de Fundo',
       type: 'image',
@@ -23,7 +42,8 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'imageAlt',
+      title: 'titulo',
+      subtitle: 'subtitulo',
       media: 'backgroundImage',
     },
   },

@@ -13,12 +13,18 @@ interface SanityImage {
 }
 
 interface HeroData {
+  titulo: string;
+  subtitulo: string;
+  textoBotao: string;
   backgroundImage: SanityImage;
   imageAlt: string;
 }
 
 async function getHero(): Promise<HeroData | null> {
   const query = `*[_type == "hero"][0] {
+    titulo,
+    subtitulo,
+    textoBotao,
     backgroundImage,
     imageAlt
   }`;
@@ -52,20 +58,18 @@ export default async function HeroSection() {
         {/* Content */}
         <div className="relative z-10">
           <h1 className="font-roboto-condensed text-white mb-4 tracking-tight font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl" style={{ fontFamily: 'var(--font-roboto-condensed)', fontWeight: 700, letterSpacing: '-0.02em', fontStretch: 'condensed', transform: 'scaleY(1.2)' }}>
-            ESPECIALIZAÇÃO VETERINÁRIA
+            {hero?.titulo || 'ESPECIALIZAÇÃO VETERINÁRIA'}
           </h1>
 
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-7 leading-relaxed max-w-3xl mx-auto font-medium">
-            Cursos de Excelência para profissionais que buscam
-            <br />
-            se destacar na medicina veterinária
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-7 leading-relaxed max-w-3xl mx-auto font-medium whitespace-pre-line">
+            {hero?.subtitulo || 'Cursos de Excelência para profissionais que buscam\nse destacar na medicina veterinária'}
           </p>
 
           <a
             href="#cursos"
             className="bg-gradient-to-r from-blue-600/65 to-purple-700/65 hover:from-blue-700/90 hover:to-purple-800/90 text-white/80 font-semibold px-5 py-1.5 rounded-md text-sm transition-all duration-300 shadow-lg inline-block"
           >
-            Conheça nossos cursos
+            {hero?.textoBotao || 'Conheça nossos cursos'}
           </a>
         </div>
       </div>
