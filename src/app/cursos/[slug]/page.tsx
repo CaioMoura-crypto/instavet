@@ -6,6 +6,7 @@ import type { SanityImageCrop, SanityImageHotspot } from '@/sanity/types';
 // Components
 import CourseHero from '@/components/CourseHero';
 import CourseAbout from '@/components/CourseAbout';
+import CourseGallery from '@/components/CourseGallery';
 import CourseProfessor from '@/components/CourseProfessor';
 import CourseWhySection from '@/components/CourseWhySection';
 import CourseStructureLocation from '@/components/CourseStructureLocation';
@@ -56,6 +57,9 @@ interface LandingPage {
   professorTitle?: string;
   professorDescription?: string;
 
+  // Galeria
+  galleryPhotos?: SanityImage[];
+
   // Por que fazer
   whyTitle?: string;
   whyReasons?: string[];
@@ -103,6 +107,9 @@ const landingPageQuery = `*[_type == "courseLandingPage" && course->slug.current
   // Professor
   professorTitle,
   professorDescription,
+
+  // Galeria
+  galleryPhotos,
 
   // Por que fazer
   whyTitle,
@@ -164,6 +171,9 @@ export default async function CourseLandingPage({ params }: { params: Promise<{ 
   const aboutImageUrl = landingPage.aboutImage
     ? urlFor(landingPage.aboutImage).width(800).height(600).url()
     : null;
+  const galleryPhotosUrls = landingPage.galleryPhotos?.map((photo) =>
+    urlFor(photo).width(1200).height(600).url()
+  ) || [];
 
   return (
     <main>
@@ -187,6 +197,11 @@ export default async function CourseLandingPage({ params }: { params: Promise<{ 
         paymentUrl={course.paymentUrl}
         themeColor={themeColor}
       />
+
+      {/* Galeria de Fotos */}
+      {galleryPhotosUrls.length > 0 && (
+        <CourseGallery photos={galleryPhotosUrls} />
+      )}
 
       {/* Sobre o Professor */}
       {landingPage.professorDescription && (

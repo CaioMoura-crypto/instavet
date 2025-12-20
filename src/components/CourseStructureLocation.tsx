@@ -45,7 +45,7 @@ export default function CourseStructureLocation({
         <div className="bg-white rounded-xl overflow-hidden shadow-md border border-current/50" style={{color: themeColor}}>
           <div className="h-6" style={{backgroundColor: themeColor}} />
           <div className="p-6">
-            <h3 className="font-bebas-neue text-2xl md:text-3xl text-current mb-6 uppercase tracking-tight">
+            <h3 className="font-roboto-condensed font-bold text-2xl md:text-3xl text-current mb-6 uppercase tracking-tight" style={{ fontFamily: 'var(--font-roboto-condensed)', fontWeight: 700, letterSpacing: '-0.02em', fontStretch: 'condensed', transform: 'scaleY(1.2)' }}>
               {structureTitle}
             </h3>
 
@@ -82,7 +82,7 @@ export default function CourseStructureLocation({
         <div className="bg-white rounded-xl overflow-hidden shadow-md border border-current/50" style={{color: themeColor}}>
           <div className="h-6" style={{backgroundColor: themeColor}} />
           <div className="p-6">
-            <h3 className="font-bebas-neue text-2xl md:text-3xl text-current mb-6 uppercase tracking-tight">
+            <h3 className="font-roboto-condensed font-bold text-2xl md:text-3xl text-current mb-6 uppercase tracking-tight" style={{ fontFamily: 'var(--font-roboto-condensed)', fontWeight: 700, letterSpacing: '-0.02em', fontStretch: 'condensed', transform: 'scaleY(1.2)' }}>
               {locationTitle}
             </h3>
 

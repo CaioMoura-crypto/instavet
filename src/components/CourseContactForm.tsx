@@ -89,7 +89,7 @@ export default function CourseContactForm({
 
           {/* Seção de título */}
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 uppercase tracking-tight">
+            <h2 className="font-roboto-condensed font-bold text-3xl md:text-4xl lg:text-5xl text-gray-900 mb-4 uppercase tracking-tight" style={{ fontFamily: 'var(--font-roboto-condensed)', fontWeight: 700, letterSpacing: '-0.02em', fontStretch: 'condensed', transform: 'scaleY(1.2)' }}>
               Quer novidades? Deixe seu contato
             </h2>
             <p className="text-gray-500">

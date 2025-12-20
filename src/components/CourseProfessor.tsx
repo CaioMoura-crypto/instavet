@@ -23,7 +23,7 @@ export default function CourseProfessor({
   return (
     <section className="w-full">
       <div className="max-w-6xl mx-auto bg-[#f5f5f5] py-16 px-6 text-center">
-        <h2 className="font-bebas-neue text-4xl md:text-5xl lg:text-6xl mb-8 uppercase tracking-tight" style={{color: themeColor}}>
+        <h2 className="font-roboto-condensed font-bold text-4xl md:text-5xl lg:text-6xl mb-8 uppercase tracking-tight" style={{color: themeColor, fontFamily: 'var(--font-roboto-condensed)', fontWeight: 700, letterSpacing: '-0.02em', fontStretch: 'condensed', transform: 'scaleY(1.2)'}}>
           {title}
         </h2>
 

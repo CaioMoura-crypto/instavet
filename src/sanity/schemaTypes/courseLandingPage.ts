@@ -21,6 +21,11 @@ export default defineType({
       options: { collapsible: true, collapsed: true },
     },
     {
+      name: 'gallery',
+      title: 'Galeria de Fotos',
+      options: { collapsible: true, collapsed: true },
+    },
+    {
       name: 'professor',
       title: 'Seção Sobre o Professor',
       options: { collapsible: true, collapsed: true },
@@ -142,6 +147,17 @@ export default defineType({
       options: { hotspot: true },
       description: 'Exibida se não houver vídeo',
       fieldset: 'about',
+    }),
+
+    // Galeria de Fotos
+    defineField({
+      name: 'galleryPhotos',
+      title: 'Fotos da Galeria',
+      type: 'array',
+      of: [{ type: 'image', options: { hotspot: true } }],
+      description: 'Carrossel de fotos do curso (até 11 fotos)',
+      validation: (Rule) => Rule.max(11),
+      fieldset: 'gallery',
     }),
 
     // Seção Sobre o Professor

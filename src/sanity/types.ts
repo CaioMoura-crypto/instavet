@@ -207,6 +207,19 @@ export type CourseLandingPage = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  galleryPhotos?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
   professorTitle?: string;
   professorDescription?: string;
   whyTitle?: string;

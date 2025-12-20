@@ -45,7 +45,7 @@ export default function CourseAbout({
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row" style={{backgroundColor: themeColor}}>
           {/* Painel esquerdo: título e descrição */}
           <div className="w-full md:w-1/2 py-12 px-6 md:px-12 flex flex-col justify-center overflow-hidden">
-              <h2 className="font-bebas-neue text-4xl md:text-5xl text-white mb-6 uppercase tracking-tight">
+              <h2 className="font-roboto-condensed font-bold text-4xl md:text-5xl text-white mb-6 uppercase tracking-tight" style={{ fontFamily: 'var(--font-roboto-condensed)', fontWeight: 700, letterSpacing: '-0.02em', fontStretch: 'condensed', transform: 'scaleY(1.2)' }}>
                 {title}
               </h2>
               <p className="text-white/90 text-base md:text-lg leading-relaxed mb-4 break-words">
@@ -117,7 +117,7 @@ export default function CourseAbout({
       {/* Modal: descrição completa */}
       {showFullText && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4 relative shadow-xl">
+          <div className="bg-white/90 rounded-lg p-6 max-w-md w-full mx-4 relative shadow-xl">
             <button
               onClick={() => setShowFullText(false)}
               className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-lg"
