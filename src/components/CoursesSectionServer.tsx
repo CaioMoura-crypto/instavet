@@ -24,6 +24,7 @@ interface Course {
   spots: number;
   price: number;
   image: SanityImage;
+  slug: { current: string };
   detailsUrl?: string;
   paymentUrl?: string;
 }
@@ -40,6 +41,7 @@ async function getCourses(): Promise<Course[]> {
     spots,
     price,
     image,
+    slug,
     detailsUrl,
     paymentUrl
   }`;
@@ -63,6 +65,7 @@ export default async function CoursesSectionServer() {
     spots: course.spots,
     price: course.price,
     imageUrl: course.image ? urlFor(course.image).width(400).height(200).url() : '',
+    slug: course.slug?.current,
     detailsUrl: course.detailsUrl,
     paymentUrl: course.paymentUrl,
   }));

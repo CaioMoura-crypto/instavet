@@ -14,6 +14,7 @@ interface Course {
   spots: number;
   price: number;
   imageUrl: string;
+  slug?: string;
   detailsUrl?: string;
   paymentUrl?: string;
 }
@@ -229,16 +230,26 @@ export default function CoursesSection({ courses }: CoursesSectionProps) {
             )}
 
             {/* Buttons */}
-            <div className="flex gap-3">
-              <a
-                href={selectedCourse.paymentUrl || '#'}
-                className="flex-1 px-4 py-3 bg-violet-800 hover:bg-violet-700 rounded-lg text-sm font-medium text-white transition-colors text-center"
-              >
-                Ir para pagamento
-              </a>
+            <div className="flex flex-col gap-3">
+              <div className="flex gap-3">
+                <a
+                  href={selectedCourse.paymentUrl || '#'}
+                  className="flex-1 px-4 py-3 bg-violet-800 hover:bg-violet-700 rounded-lg text-sm font-medium text-white transition-colors text-center"
+                >
+                  Ir para pagamento
+                </a>
+                {selectedCourse.slug && (
+                  <a
+                    href={`/cursos/${selectedCourse.slug}`}
+                    className="px-4 py-3 border border-violet-800 text-violet-800 hover:bg-violet-50 rounded-lg text-sm font-medium transition-colors text-center"
+                  >
+                    Mais detalhes
+                  </a>
+                )}
+              </div>
               <button
                 onClick={() => setSelectedCourse(null)}
-                className="px-6 py-3 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                className="w-full px-6 py-3 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
               >
                 Fechar
               </button>
