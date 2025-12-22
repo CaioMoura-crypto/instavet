@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 interface CourseGalleryProps {
   photos: string[];
@@ -13,29 +13,7 @@ export default function CourseGallery({ photos }: CourseGalleryProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const itemsPerView = 3; // Mostra 3 imagens por vez
 
-  // Carrossel automático
-  useEffect(() => {
-    if (photos.length <= itemsPerView) return;
-
-    const interval = setInterval(() => {
-      handleNext();
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [scrollPosition, photos.length]);
-
-  // Bloquear scroll quando modal estiver aberto
-  useEffect(() => {
-    if (selectedImageIndex !== null) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [selectedImageIndex]);
-
+  // Funções de carrossel
   const handlePrev = () => {
     if (scrollRef.current) {
       const itemWidth = scrollRef.current.scrollWidth / photos.length;
@@ -70,17 +48,41 @@ export default function CourseGallery({ photos }: CourseGalleryProps) {
     setSelectedImageIndex(null);
   };
 
-  const handleModalPrev = () => {
+  const handleModalPrev = useCallback(() => {
     if (selectedImageIndex !== null) {
       setSelectedImageIndex(selectedImageIndex === 0 ? photos.length - 1 : selectedImageIndex - 1);
     }
-  };
+  }, [selectedImageIndex, photos.length]);
 
-  const handleModalNext = () => {
+  const handleModalNext = useCallback(() => {
     if (selectedImageIndex !== null) {
       setSelectedImageIndex(selectedImageIndex === photos.length - 1 ? 0 : selectedImageIndex + 1);
     }
-  };
+  }, [selectedImageIndex, photos.length]);
+
+  // Carrossel automático
+  useEffect(() => {
+    if (photos.length <= itemsPerView) return;
+
+    const interval = setInterval(() => {
+      handleNext();
+    }, 4000);
+
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [photos.length]);
+
+  // Bloquear scroll quando modal estiver aberto
+  useEffect(() => {
+    if (selectedImageIndex !== null) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedImageIndex]);
 
   // Fechar modal com tecla ESC
   useEffect(() => {
@@ -94,7 +96,7 @@ export default function CourseGallery({ photos }: CourseGalleryProps) {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedImageIndex]);
+  }, [selectedImageIndex, handleModalPrev, handleModalNext]);
 
   if (!photos || photos.length === 0) {
     return null;
